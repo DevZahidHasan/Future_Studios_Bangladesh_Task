@@ -25,7 +25,7 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} font-sans antialiased h-full`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <DashboardLayout>{children}</DashboardLayout>
         </ThemeProvider>
       </body>
