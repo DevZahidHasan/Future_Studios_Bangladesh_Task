@@ -49,8 +49,12 @@ export function CommandPalette() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] cmdk-overlay bg-background/50 backdrop-blur-sm flex items-start justify-center pt-[15vh]">
+    <div 
+      className="fixed inset-0 z-[150] cmdk-overlay bg-background/50 backdrop-blur-sm flex items-start justify-center pt-[15vh]"
+      onClick={() => setOpen(false)}
+    >
       <Command 
+        onClick={(e) => e.stopPropagation()}
         className="cmdk-dialog relative w-full max-w-[640px] overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
         onKeyDown={(e) => {
           if (e.key === 'Escape') setOpen(false);
