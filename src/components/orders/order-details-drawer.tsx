@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, Package, Calendar, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Order } from "@/types";
@@ -46,7 +47,7 @@ export function OrderDetailsDrawer({ order, onClose }: OrderDetailsDrawerProps) 
       gsap.fromTo(
         panelRef.current,
         { x: "100%" },
-        { x: "0%", duration: 0.6, ease: "expo.out", clearProps: "transform" }
+        { x: "0%", duration: 0.6, ease: "expo.out" }
       );
       
       // Stagger animate the inner content for a premium feel
@@ -77,23 +78,30 @@ export function OrderDetailsDrawer({ order, onClose }: OrderDetailsDrawerProps) 
   // If there's no order and we aren't currently animating it closed, render nothing
   if (!order && !isClosing) return null;
 
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Use the cached order to prevent layout shifts during the closing animation
   const displayOrder = order || cachedOrder;
-  if (!displayOrder) return null;
+  if (!displayOrder || !mounted) return null;
 
-  return (
+  const drawerContent = (
+
     <>
       {/* Backdrop */}
       <div 
         ref={backdropRef}
-        className="fixed inset-0 z-40 bg-background/50 backdrop-blur-sm opacity-0 will-change-opacity"
+        className="fixed inset-0 z-[90] bg-background/50 backdrop-blur-sm"
         onClick={handleClose}
       />
       
       {/* Slide-over panel (FROM RIGHT) */}
       <div 
         ref={panelRef}
-        className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-card border-l border-border shadow-[[-20px_0_40px_rgba(0,0,0,0.1)]] flex flex-col translate-x-full will-change-transform"
+        className="fixed inset-y-0 right-0 z-[100] w-full max-w-md bg-card border-l border-border shadow-2xl flex flex-col"
       >
         <div className="flex items-center justify-between p-6 border-b border-border drawer-stagger">
           <div>
@@ -184,4 +192,6 @@ export function OrderDetailsDrawer({ order, onClose }: OrderDetailsDrawerProps) 
       </div>
     </>
   );
+
+  return createPortal(drawerContent, document.body);
 }
