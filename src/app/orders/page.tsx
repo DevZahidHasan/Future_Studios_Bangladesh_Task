@@ -6,22 +6,23 @@ import { OrdersToolbar } from "@/components/orders/orders-toolbar";
 export const dynamic = "force-dynamic";
 
 interface OrdersPageProps {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
     status?: string;
     date_from?: string;
     date_to?: string;
     page?: string;
-  };
+  }>;
 }
 
 export default async function OrdersPage({ searchParams }: OrdersPageProps) {
-  // Extract parameters
-  const page = searchParams.page ? parseInt(searchParams.page, 10) : 1;
-  const q = searchParams.q || "";
-  const status = searchParams.status || "";
-  const date_from = searchParams.date_from || "";
-  const date_to = searchParams.date_to || "";
+  // Extract parameters (Next.js 15+ requires awaiting searchParams)
+  const resolvedParams = await searchParams;
+  const page = resolvedParams.page ? parseInt(resolvedParams.page, 10) : 1;
+  const q = resolvedParams.q || "";
+  const status = resolvedParams.status || "";
+  const date_from = resolvedParams.date_from || "";
+  const date_to = resolvedParams.date_to || "";
 
   // Fetch filtered orders
   const response = await OrdersService.fetchOrders({
