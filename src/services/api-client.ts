@@ -26,8 +26,12 @@ export async function apiClient<T>(
     const isServer = typeof window === 'undefined';
     let fetchUrl = url;
     if (isServer && url.startsWith('/api')) {
-      // In a real app, use an env var like process.env.NEXT_PUBLIC_API_URL
-      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+      let baseUrl = 'http://localhost:3000';
+      if (process.env.NEXT_PUBLIC_APP_URL) {
+        baseUrl = process.env.NEXT_PUBLIC_APP_URL.startsWith('http') ? process.env.NEXT_PUBLIC_APP_URL : `https://${process.env.NEXT_PUBLIC_APP_URL}`;
+      } else if (process.env.VERCEL_URL) {
+        baseUrl = `https://${process.env.VERCEL_URL}`;
+      }
       fetchUrl = `${baseUrl}${url}`;
     }
 
