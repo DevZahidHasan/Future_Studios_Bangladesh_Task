@@ -2,6 +2,7 @@
 import { Outfit } from 'next/font/google';
 import './globals.css';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 const outfit = Outfit({ 
   subsets: ['latin'],
@@ -20,11 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body
         className={`${outfit.variable} font-sans antialiased h-full`}
       >
-        <DashboardLayout>{children}</DashboardLayout>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <DashboardLayout>{children}</DashboardLayout>
+        </ThemeProvider>
       </body>
     </html>
   );
