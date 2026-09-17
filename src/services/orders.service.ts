@@ -6,6 +6,8 @@ export interface FetchOrdersParams {
   limit?: number;
   q?: string;
   status?: string;
+  date_from?: string;
+  date_to?: string;
 }
 
 export const OrdersService = {
@@ -16,6 +18,8 @@ export const OrdersService = {
     if (params.limit) searchParams.append('limit', params.limit.toString());
     if (params.q) searchParams.append('q', params.q);
     if (params.status) searchParams.append('status', params.status);
+    if (params.date_from) searchParams.append('date_from', params.date_from);
+    if (params.date_to) searchParams.append('date_to', params.date_to);
 
     const query = searchParams.toString();
     const endpoint = query ? `/orders?${query}` : '/orders';
