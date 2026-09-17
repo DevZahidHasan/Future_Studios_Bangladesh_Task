@@ -117,22 +117,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
                 <p className="text-xs text-muted-foreground truncate">zahidhasan19932023@gmail.com</p>
               </div>
               
-              <div className="flex flex-col">
-                <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground rounded-md transition-colors w-full text-left">
-                  <User className="w-4 h-4" />
-                  My Profile
-                  <span className="ml-auto text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded uppercase">Soon</span>
-                </button>
-                <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground rounded-md transition-colors w-full text-left">
-                  <SettingsIcon className="w-4 h-4" />
-                  Account Settings
-                  <span className="ml-auto text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded uppercase">Soon</span>
-                </button>
-                <div className="h-px bg-border my-1" />
-                <button className="flex items-center gap-2 px-3 py-2 text-sm text-destructive hover:bg-destructive/10 rounded-md transition-colors w-full text-left">
-                  <LogOut className="w-4 h-4" />
-                  Sign out
-                </button>
+              <div className="flex flex-col items-center justify-center py-4 text-center text-muted-foreground">
+                <p className="text-sm">Account menu</p>
+                <p className="text-xs text-primary font-medium mt-1 bg-primary/10 px-2 py-0.5 rounded-full">Coming Soon</p>
               </div>
             </div>
           )}
