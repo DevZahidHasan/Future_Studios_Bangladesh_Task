@@ -13,8 +13,6 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 const navItems = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
   { name: 'Orders', href: '/orders', icon: ShoppingCart },
-  { name: 'Analytics', href: '#', icon: Activity, disabled: true },
-  { name: 'Settings', href: '#', icon: Settings, disabled: true },
 ];
 
 export function Sidebar({ className, onClose, ...props }: SidebarProps) {
@@ -53,11 +51,10 @@ export function Sidebar({ className, onClose, ...props }: SidebarProps) {
           return (
             <Link
               key={item.name}
-              href={item.disabled ? '#' : item.href}
-              onClick={item.disabled ? undefined : onClose}
+              href={item.href}
+              onClick={onClose}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all group",
-                item.disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-secondary hover:text-secondary-foreground",
+                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all group hover:bg-secondary hover:text-secondary-foreground",
                 isActive ? "bg-primary/10 text-primary" : "text-muted-foreground"
               )}
             >
