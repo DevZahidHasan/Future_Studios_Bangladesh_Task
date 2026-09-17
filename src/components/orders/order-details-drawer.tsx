@@ -24,6 +24,11 @@ export function OrderDetailsDrawer({ order, onClose }: OrderDetailsDrawerProps) 
   // We need to keep a cached copy of the order so it doesn't immediately 
   // disappear/crash when `order` becomes null during the close animation.
   const [cachedOrder, setCachedOrder] = useState<Order | null>(order);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (order) {
@@ -79,10 +84,7 @@ export function OrderDetailsDrawer({ order, onClose }: OrderDetailsDrawerProps) 
   if (!order && !isClosing) return null;
 
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+
 
   // Use the cached order to prevent layout shifts during the closing animation
   const displayOrder = order || cachedOrder;
