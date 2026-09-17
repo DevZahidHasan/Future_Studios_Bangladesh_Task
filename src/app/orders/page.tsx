@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { OrdersService } from "@/services/orders.service";
 import { OrdersTable } from "@/components/orders/orders-table";
 import { OrdersToolbar } from "@/components/orders/orders-toolbar";
+import { OrdersPagination } from "@/components/orders/orders-pagination";
 
 export const dynamic = "force-dynamic";
 
@@ -58,10 +59,7 @@ export default async function OrdersPage({ searchParams }: OrdersPageProps) {
           <div>
             Showing {((meta.page - 1) * meta.limit) + (orders.length > 0 ? 1 : 0)} to {((meta.page - 1) * meta.limit) + orders.length} of {meta.total} orders
           </div>
-          <div className="flex gap-2">
-            {/* Real pagination could be added here syncing with ?page=2 */}
-            <span className="px-2">Page {meta.page} of {meta.totalPages}</span>
-          </div>
+          <OrdersPagination currentPage={meta.page} totalPages={meta.totalPages} />
         </div>
       </div>
     </div>
