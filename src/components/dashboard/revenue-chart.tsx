@@ -54,8 +54,8 @@ export function RevenueChart({ data }: RevenueChartProps) {
                   borderRadius: 'var(--radius)'
                 }}
                 itemStyle={{ color: 'hsl(var(--foreground))' }}
-                labelFormatter={(label) => new Date(label).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                formatter={(value: number) => [
+                labelFormatter={(label: any) => new Date(label).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                formatter={(value: any) => [
                   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value), 
                   "Revenue"
                 ]}

@@ -40,7 +40,7 @@ export function OrdersChart({ data }: OrdersChartProps) {
                   borderColor: 'hsl(var(--border))',
                   borderRadius: 'var(--radius)'
                 }}
-                labelFormatter={(label) => new Date(label).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                labelFormatter={(label: any) => new Date(label).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
               />
               <Bar 
                 dataKey="orders" 

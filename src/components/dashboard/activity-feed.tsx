@@ -10,8 +10,9 @@ interface ActivityFeedProps {
 const eventStyles: Record<ActivityEvent['type'], { icon: any; color: string; bg: string }> = {
   order_placed: { icon: ShoppingCart, color: "text-blue-500", bg: "bg-blue-500/10" },
   order_completed: { icon: CheckCircle2, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-  user_signup: { icon: UserPlus, color: "text-purple-500", bg: "bg-purple-500/10" },
-  report_generated: { icon: FileText, color: "text-orange-500", bg: "bg-orange-500/10" },
+  customer_joined: { icon: UserPlus, color: "text-purple-500", bg: "bg-purple-500/10" },
+  system_alert: { icon: FileText, color: "text-orange-500", bg: "bg-orange-500/10" },
+  order_failed: { icon: AlertCircle, color: "text-red-500", bg: "bg-red-500/10" },
 };
 
 function formatTimeAgo(dateString: string) {
@@ -45,13 +46,13 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
                     <Icon className="w-4 h-4" />
                   </div>
                   <div className="flex flex-col flex-1">
-                    <p className="text-sm font-medium leading-none">{activity.description}</p>
+                    <p className="text-sm font-medium leading-none">{activity.message}</p>
                     <div className="flex items-center gap-2 mt-1.5 text-xs text-muted-foreground">
                       <span>{formatTimeAgo(activity.timestamp)}</span>
-                      {activity.metadata?.userId && (
+                      {activity.relatedEntityId && (
                         <>
                           <span className="w-1 h-1 rounded-full bg-border" />
-                          <span>User ID: {activity.metadata.userId.split('-')[0]}</span>
+                          <span>User ID: {activity.relatedEntityId.split('-')[0]}</span>
                         </>
                       )}
                     </div>
