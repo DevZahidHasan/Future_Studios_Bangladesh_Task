@@ -5,10 +5,16 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianG
 import type { AnalyticsSummary } from "@/types";
 
 interface RevenueChartProps {
-  data: AnalyticsSummary['monthlyData'];
+  data: AnalyticsSummary['revenueTimeseries'];
 }
 
 export function RevenueChart({ data }: RevenueChartProps) {
+  // Format dates for X-Axis (e.g. "2024-01-01" -> "Jan")
+  const formatXAxis = (dateStr: string) => {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-US', { month: 'short' });
+  };
+
   return (
     <Card className="col-span-1 lg:col-span-4">
       <CardHeader>
@@ -27,11 +33,11 @@ export function RevenueChart({ data }: RevenueChartProps) {
               </defs>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
               <XAxis 
-                dataKey="month" 
+                dataKey="date" 
                 axisLine={false}
                 tickLine={false}
                 tickMargin={10}
-                tickFormatter={(value) => value.slice(0, 3)}
+                tickFormatter={formatXAxis}
                 className="text-xs fill-muted-foreground"
               />
               <YAxis 
@@ -48,6 +54,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
                   borderRadius: 'var(--radius)'
                 }}
                 itemStyle={{ color: 'hsl(var(--foreground))' }}
+                labelFormatter={(label) => new Date(label).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                 formatter={(value: number) => [
                   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value), 
                   "Revenue"

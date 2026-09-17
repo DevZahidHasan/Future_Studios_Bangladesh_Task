@@ -38,8 +38,8 @@ export default async function DashboardPage() {
       <KPICards summary={summary} />
 
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-7">
-        <RevenueChart data={summary.monthlyData} />
-        <OrdersChart data={summary.monthlyData} />
+        <RevenueChart data={summary.revenueTimeseries} />
+        <OrdersChart data={summary.revenueTimeseries} />
       </div>
 
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-7">
