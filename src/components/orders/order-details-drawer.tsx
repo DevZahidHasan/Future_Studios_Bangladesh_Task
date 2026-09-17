@@ -77,19 +77,19 @@ export function OrderDetailsDrawer({ order, onClose }: OrderDetailsDrawerProps) 
                         <Package className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="font-medium text-sm">{item.productName}</p>
+                        <p className="font-medium text-sm">{item.name}</p>
                         <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
                       </div>
                     </div>
                     <div className="font-medium text-sm">
-                      {(item.price * item.quantity).toFixed(2)}
+                      {(item.totalPrice).toFixed(2)}
                     </div>
                   </li>
                 ))}
               </ul>
               <div className="bg-secondary/30 p-4 border-t border-border flex justify-between items-center">
                 <span className="font-medium">Total</span>
-                <span className="font-bold text-lg">{order.total.toFixed(2)}</span>
+                <span className="font-bold text-lg">{order.totalAmount.toFixed(2)}</span>
               </div>
             </div>
           </section>

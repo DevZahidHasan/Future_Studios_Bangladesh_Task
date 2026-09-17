@@ -56,7 +56,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
                       </Badge>
                     </td>
                     <td className="px-4 py-4 text-right font-medium">
-                      {order.total.toFixed(2)}
+                      {order.totalAmount.toFixed(2)}
                     </td>
                   </tr>
                 ))
