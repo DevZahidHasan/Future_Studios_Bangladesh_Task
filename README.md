@@ -1,4 +1,4 @@
-# Nexus Analytics Dashboard
+# Analytics Dashboard
 
 A modern, high-performance SaaS analytics dashboard built with Next.js 15 (App Router), TypeScript, Tailwind CSS, and GSAP. 
 
