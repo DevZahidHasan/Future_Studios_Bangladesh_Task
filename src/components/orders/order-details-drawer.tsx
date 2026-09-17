@@ -15,12 +15,12 @@ export function OrderDetailsDrawer({ order, onClose }: OrderDetailsDrawerProps) 
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 z-40 bg-background/50 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 z-40 bg-background/50 backdrop-blur-sm animate-fade-in"
         onClick={onClose}
       />
       
       {/* Slide-over panel */}
-      <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-card border-l border-border shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col translate-x-0">
+      <div className="fixed inset-y-0 left-0 z-50 w-full max-w-md bg-card border-r border-border shadow-[20px_0_40px_rgba(0,0,0,0.1)] flex flex-col animate-slide-in-left">
         <div className="flex items-center justify-between p-6 border-b border-border">
           <div>
             <h2 className="text-lg font-semibold tracking-tight">Order Details</h2>
