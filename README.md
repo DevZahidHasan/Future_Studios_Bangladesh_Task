@@ -1,4 +1,4 @@
-﻿# Nexus Analytics Dashboard
+# Nexus Analytics Dashboard
 
 A modern, high-performance SaaS analytics dashboard built with Next.js 15 (App Router), TypeScript, Tailwind CSS, and GSAP. 
 
@@ -46,6 +46,15 @@ Instead of hardcoding data into UI components or mixing `fetch` calls inside Rea
 2. **Service Layer (`services/`)**: A dedicated `apiClient` manages the actual `fetch` execution, while specific services (e.g., `OrdersService`) provide strongly-typed methods for components to call.
 3. **URL-Driven State**: For the Orders page, search queries (`q`), status filters, and pagination are securely stored in the URL `searchParams`. This ensures that filtering is shareable, bookmarkable, and natively triggers Next.js Server Component re-renders.
 
+## ✨ The Wow Factor
+
+To elevate the application beyond standard requirements and deliver a truly premium SaaS feel, several advanced UX features were engineered:
+
+- **GSAP Animations**: Replaced standard CSS transitions with GSAP (GreenSock) for buttery-smooth `power4.out` page routing transitions and staggered drawer animations.
+- **Global Command Palette (`⌘K`)**: Integrated a headless `cmdk` interface that blurs the background and allows users to instantly navigate pages or toggle themes without touching the mouse.
+- **Light & Dark Mode**: Implemented `next-themes` for a flawless, flicker-free dark mode that respects system preferences and persists user choices.
+- **React Portals**: Engineered the sliding Order Details drawer to teleport to the document body, entirely avoiding the infamous CSS `transform` clipping traps caused by page transition wrappers.
+
 ## ⚛️ Server vs. Client Components
 
 This project leverages the Next.js App Router paradigm to maximize performance:
@@ -58,4 +67,3 @@ This project leverages the Next.js App Router paradigm to maximize performance:
 - **Debounced Inputs**: The search bar in the Orders toolbar uses a `setTimeout` debounce to prevent spamming the server with requests on every keystroke.
 - **Memoization (`useCallback`)**: Complex functions passed as dependencies (like `createQueryString` in the toolbar) are wrapped in `useCallback` to maintain stable reference identities across renders, preventing unnecessary re-evaluations of `useEffect` hooks.
 - **Suspense & Streaming**: Instead of blocking the entire page render during the 300ms API latency, we utilize Next.js `loading.tsx` boundaries. This instantly streams a shimmering UI skeleton to the user while the server resolves the data.
-- **React Portals**: The Order Details sliding drawer uses `createPortal` to mount directly into `document.body`. This prevents CSS `transform` clipping issues often caused by nested fixed elements inside animated routes.
