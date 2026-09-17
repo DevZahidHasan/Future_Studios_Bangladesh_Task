@@ -9,10 +9,22 @@ import { ActivityFeed } from "@/components/dashboard/activity-feed";
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const [summary, activities] = await Promise.all([
+  const [summaryResponse, activitiesResponse] = await Promise.all([
     AnalyticsService.fetchSummary(),
     ActivitiesService.fetchRecent()
   ]);
+
+  if (summaryResponse.error || !summaryResponse.data) {
+    return (
+      <div className="p-6 text-destructive">
+        <h2 className="text-xl font-bold">Failed to load dashboard data</h2>
+        <p>{summaryResponse.error?.message || "Unknown error occurred while fetching analytics."}</p>
+      </div>
+    );
+  }
+
+  const summary = summaryResponse.data;
+  const activities = activitiesResponse.data || [];
 
   return (
     <div className="flex flex-col gap-6">
