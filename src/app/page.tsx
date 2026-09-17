@@ -5,6 +5,7 @@ import { KPICards } from "@/components/dashboard/kpi-cards";
 import { RevenueChart } from "@/components/dashboard/revenue-chart";
 import { OrdersChart } from "@/components/dashboard/orders-chart";
 import { ActivityFeed } from "@/components/dashboard/activity-feed";
+import { TopProducts } from "@/components/dashboard/top-products";
 
 export const dynamic = "force-dynamic";
 
@@ -44,9 +45,7 @@ export default async function DashboardPage() {
 
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-7">
         <ActivityFeed activities={activities.slice(0, 8)} />
-        <div className="col-span-1 lg:col-span-4 rounded-xl border border-dashed border-border flex items-center justify-center p-6 text-muted-foreground bg-secondary/20">
-          <p className="text-sm">Top Products Widget (Coming Soon)</p>
-        </div>
+        <TopProducts />
       </div>
     </div>
   );
