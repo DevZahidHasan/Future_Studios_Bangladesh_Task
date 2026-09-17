@@ -4611,17 +4611,17 @@ export const mockActivities: ActivityEvent[] = [
 
 export const mockAnalytics: AnalyticsSummary = {
   totalRevenue: {
-  "value": 0,
-  "previousValue": 13147.4,
-  "trendPercentage": 100,
-  "isPositive": false
-},
+    "value": 24592.50,
+    "previousValue": 13147.40,
+    "trendPercentage": 87.1,
+    "isPositive": true
+  },
   totalOrders: {
-  "value": 0,
-  "previousValue": 11,
-  "trendPercentage": 100,
-  "isPositive": false
-},
+    "value": 150,
+    "previousValue": 110,
+    "trendPercentage": 36.4,
+    "isPositive": true
+  },
   activeCustomers: {
   "value": 50,
   "previousValue": 45,
