@@ -1,19 +1,17 @@
 import { Suspense } from "react";
 import { AnalyticsService } from "@/services/analytics.service";
-import { ActivityService } from "@/services/activities.service";
+import { ActivitiesService } from "@/services/activities.service";
 import { KPICards } from "@/components/dashboard/kpi-cards";
 import { RevenueChart } from "@/components/dashboard/revenue-chart";
 import { OrdersChart } from "@/components/dashboard/orders-chart";
 import { ActivityFeed } from "@/components/dashboard/activity-feed";
 
-// Opt-out of static rendering to ensure fresh data (and to let our simulated latency work)
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  // Fetch data in parallel
   const [summary, activities] = await Promise.all([
-    AnalyticsService.getSummary(),
-    ActivityService.getRecentActivities(8)
+    AnalyticsService.fetchSummary(),
+    ActivitiesService.fetchRecent()
   ]);
 
   return (
@@ -33,8 +31,7 @@ export default async function DashboardPage() {
       </div>
 
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-7">
-        <ActivityFeed activities={activities} />
-        {/* Placeholder for top products or empty slot */}
+        <ActivityFeed activities={activities.slice(0, 8)} />
         <div className="col-span-1 lg:col-span-4 rounded-xl border border-dashed border-border flex items-center justify-center p-6 text-muted-foreground bg-secondary/20">
           <p className="text-sm">Top Products Widget (Coming Soon)</p>
         </div>

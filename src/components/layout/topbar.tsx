@@ -1,12 +1,18 @@
-﻿"use client";
+"use client";
 
 import { Menu, Search, Bell } from 'lucide-react';
 
-export function Topbar() {
+interface TopbarProps {
+  onMenuClick?: () => void;
+}
+
+export function Topbar({ onMenuClick }: TopbarProps) {
   return (
     <header className="flex h-16 items-center gap-4 border-b border-border bg-background/80 backdrop-blur-md px-4 md:px-6 sticky top-0 z-10">
-      {/* Mobile Menu Button (Will connect to a sheet in Phase 3/7) */}
-      <button className="md:hidden p-2 -ml-2 text-muted-foreground hover:text-foreground transition-colors">
+      <button 
+        onClick={onMenuClick}
+        className="md:hidden p-2 -ml-2 text-muted-foreground hover:text-foreground transition-colors"
+      >
         <Menu className="w-5 h-5" />
         <span className="sr-only">Toggle menu</span>
       </button>
@@ -21,7 +27,7 @@ export function Topbar() {
           <Search className="w-4 h-4" />
           <span>Search...</span>
           <kbd className="hidden sm:inline-flex items-center gap-1 rounded border bg-background px-1.5 font-mono text-[10px] font-medium opacity-100">
-            <span className="text-xs">⌘</span>K
+            <span className="text-xs">?</span>K
           </kbd>
         </button>
         
